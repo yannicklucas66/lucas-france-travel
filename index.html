@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas France Travel — Bespoke trip planning in France</title>
+<meta name="description" content="Custom-designed itineraries for France, planned by a Frenchman based in California. No agency, no booking fees — you stay in full control.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E2A22;
+    --ink-soft:#354237;
+    --paper:#F3EFE4;
+    --paper-dim:#EAE4D5;
+    --stone:#D8D0BC;
+    --gold:#A9824C;
+    --gold-soft:#C7A672;
+    --bordeaux:#6C2734;
+    --bordeaux-soft:#8A3A48;
+    --max:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  section{padding:96px 0;}
+  @media(max-width:680px){
+    section{padding:64px 0;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,239,228,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--stone);
+  }
+  .nav-inner{
+    max-width:var(--max);margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.01em;
+  }
+  .brand em{
+    font-style:italic;font-weight:400;color:var(--bordeaux);
+  }
+  .nav-links{
+    display:flex;gap:36px;list-style:none;margin:0;padding:0;
+    font-size:0.92rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+    transition:border-color 0.2s ease;
+  }
+  .nav-links a:hover,.nav-links a:focus-visible{
+    border-color:var(--gold);
+  }
+  .nav-cta{
+    background:var(--ink);color:var(--paper);
+    padding:9px 20px;border-radius:2px;
+    font-size:0.88rem;text-decoration:none;
+    border:1px solid var(--ink);
+    transition:background 0.2s ease,color 0.2s ease;
+  }
+  .nav-cta:hover{background:transparent;color:var(--ink);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+  @media(max-width:800px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--paper);
+      flex-direction:column;gap:0;
+      border-bottom:1px solid var(--stone);
+      max-height:0;overflow:hidden;
+      transition:max-height 0.3s ease;
+    }
+    .nav-links.open{max-height:320px;}
+    .nav-links li{border-top:1px solid var(--stone);}
+    .nav-links a{display:block;padding:16px 32px;border-bottom:none;}
+    .nav-cta{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:88px 0 64px;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:var(--max);margin:0 auto;padding:0 32px;
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;}
+  }
+  .hero h1{
+    font-size:clamp(2.3rem,4.4vw,3.4rem);
+    line-height:1.08;
+    color:var(--paper);
+    margin-top:14px;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;color:var(--gold-soft);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.08rem;
+    max-width:46ch;
+    color:#CFCBB9;
+  }
+  .hero-ctas{margin-top:34px;display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold);color:var(--ink);
+    padding:13px 26px;border-radius:2px;
+    text-decoration:none;font-weight:600;font-size:0.94rem;
+    border:1px solid var(--gold);
+    transition:background 0.2s ease,color 0.2s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:transparent;color:var(--gold-soft);}
+  .btn-secondary{
+    color:var(--paper);
+    padding:13px 22px;border-radius:2px;
+    text-decoration:none;font-weight:500;font-size:0.94rem;
+    border:1px solid #4B584C;
+    display:inline-block;
+    transition:border-color 0.2s ease;
+  }
+  .btn-secondary:hover{border-color:var(--gold-soft);}
+
+  /* signature route diagram */
+  .route-card{
+    border:1px solid #3B473C;
+    padding:28px 24px;
+    background:#232F26;
+  }
+  .route-card .eyebrow{color:var(--gold-soft);margin-bottom:14px;display:block;}
+  #route-svg text{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    fill:#CFCBB9;
+    letter-spacing:0.02em;
+  }
+  #route-svg .stop-label{fill:var(--paper);font-weight:500;}
+  #route-svg .path-line{
+    fill:none;stroke:var(--gold-soft);stroke-width:1.6;
+    stroke-dasharray:6 5;
+  }
+  #route-svg .path-draw{
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.6s ease-out forwards 0.3s;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  #route-svg circle{fill:var(--paper);}
+  #route-svg .day-tag{
+    fill:#8E9A83;font-size:9.5px;
+  }
+  @media(prefers-reduced-motion:reduce){
+    .path-draw{animation:none;stroke-dashoffset:0;}
+  }
+
+  /* ---------- Section headers ---------- */
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-top:12px;}
+  .section-head p{margin-top:14px;color:var(--ink-soft);font-size:1.02rem;}
+
+  /* ---------- How it works ---------- */
+  .steps{border-top:1px solid var(--stone);}
+  .step{
+    display:grid;grid-template-columns:90px 1fr;gap:28px;
+    padding:34px 0;border-bottom:1px solid var(--stone);
+  }
+  @media(max-width:680px){
+    .step{grid-template-columns:56px 1fr;gap:18px;}
+  }
+  .step-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.85rem;color:var(--gold);
+    padding-top:4px;
+  }
+  .step h3{font-size:1.2rem;margin-bottom:8px;}
+  .step p{margin:0;color:var(--ink-soft);max-width:56ch;}
+
+  /* ---------- Sample routes ---------- */
+  .routes-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  @media(max-width:900px){
+    .routes-grid{grid-template-columns:1fr;}
+  }
+  .route-item{
+    background:var(--paper-dim);
+    border-top:3px solid var(--bordeaux);
+    padding:30px 26px;
+  }
+  .route-item .eyebrow{color:var(--bordeaux);}
+  .route-item h3{font-size:1.28rem;margin-top:10px;line-height:1.2;}
+  .route-item p{color:var(--ink-soft);margin-top:12px;font-size:0.96rem;}
+  .route-meta{
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--stone);
+    display:flex;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--ink-soft);
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;
+  }
+  @media(max-width:800px){.about{grid-template-columns:1fr;gap:32px;}}
+  .about-quote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:1.5rem;line-height:1.4;color:var(--ink);
+    border-left:2px solid var(--gold);padding-left:24px;
+  }
+  .about-body p{color:var(--ink-soft);margin-top:16px;}
+  .about-body p:first-child{margin-top:0;}
+
+  /* ---------- Pricing ---------- */
+  .pricing-card{
+    background:var(--ink);color:var(--paper);
+    padding:48px;border:1px solid var(--ink);
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;
+  }
+  @media(max-width:800px){.pricing-card{grid-template-columns:1fr;padding:32px;gap:28px;}}
+  .pricing-card h3{color:var(--paper);font-size:1.5rem;}
+  .pricing-card p{color:#CFCBB9;margin-top:14px;}
+  .price-box{
+    border:1px solid #4B584C;padding:28px;text-align:left;
+  }
+  .price-tag{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--gold-soft);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .price-amount{
+    font-family:'Fraunces',serif;font-size:2.1rem;color:var(--paper);margin-top:8px;
+  }
+  .price-amount span{font-size:1rem;color:#B8B4A2;font-family:'Inter',sans-serif;}
+  .price-note{font-size:0.85rem;color:#B8B4A2;margin-top:12px;}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--ink);color:var(--paper);}
+  .contact .section-head p{color:#CFCBB9;}
+  .contact .section-head .eyebrow{color:var(--gold-soft);}
+  form{max-width:620px;}
+  .field{margin-bottom:24px;}
+  .field label{
+    display:block;font-family:'IBM Plex Mono',monospace;
+    font-size:0.76rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:#B8B4A2;margin-bottom:8px;
+  }
+  .field input,.field textarea{
+    width:100%;background:transparent;
+    border:none;border-bottom:1px solid #4B584C;
+    color:var(--paper);font-family:'Inter',sans-serif;font-size:1rem;
+    padding:10px 2px;outline:none;
+    transition:border-color 0.2s ease;
+  }
+  .field input:focus,.field textarea:focus{border-color:var(--gold-soft);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media(max-width:600px){.row-2{grid-template-columns:1fr;}}
+  .submit-btn{
+    background:var(--gold);color:var(--ink);border:1px solid var(--gold);
+    padding:14px 30px;font-weight:600;font-size:0.95rem;
+    cursor:pointer;border-radius:2px;margin-top:8px;
+    transition:background 0.2s ease,color 0.2s ease;
+  }
+  .submit-btn:hover{background:transparent;color:var(--gold-soft);}
+  .hidden-field{position:absolute;left:-9999px;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);color:#8E9A83;
+    padding:32px 0;border-top:1px solid #3B473C;
+    font-size:0.82rem;
+  }
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  footer .legal{max-width:640px;}
+
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Lucas <em>France</em> Travel</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#routes">Sample routes</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow" style="color:var(--gold-soft)">Bespoke trip planning · France</span>
+      <h1>France, planned by someone<br> who grew up there — <em>run entirely by you.</em></h1>
+      <p class="lede">I design a custom, day-by-day itinerary for your trip to France: where to go, where to stay, how to get around, and the local know-how you won't find in a guidebook. You book everything yourself, directly — no agency, no commissions, no hidden fees.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Book a free discovery call</a>
+        <a href="#routes" class="btn-secondary">See sample routes</a>
+      </div>
+    </div>
+    <div class="route-card">
+      <span class="eyebrow">A route, sketched to order</span>
+      <svg id="route-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sample itinerary route from Paris to the Loire Valley to Provence">
+        <path class="path-line path-draw" d="M 60 40 C 120 90, 90 150, 150 170 C 210 190, 230 230, 300 255"></path>
+        <circle cx="60" cy="40" r="4"></circle>
+        <circle cx="150" cy="170" r="4"></circle>
+        <circle cx="300" cy="255" r="4"></circle>
+        <text x="72" y="36" class="stop-label">Paris</text>
+        <text x="72" y="50" class="day-tag">Day 1–2</text>
+        <text x="162" y="166" class="stop-label">Loire Valley</text>
+        <text x="162" y="180" class="day-tag">Day 3–4</text>
+        <text x="228" y="251" class="stop-label">Provence</text>
+        <text x="228" y="265" class="day-tag">Day 5–8</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Process</span>
+      <h2>How it works</h2>
+      <p>Four steps, from a first conversation to a finished itinerary you can act on immediately.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div><h3>Discovery call</h3><p>A free 20-minute call to understand your pace, budget, interests, and what a great trip looks like for you specifically.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div><h3>A short questionnaire</h3><p>Dates, must-sees, things to avoid, dietary needs, mobility — the details that make an itinerary actually fit your trip.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div><h3>Your itinerary, delivered</h3><p>A detailed day-by-day plan: regions and towns, lodging options (not reservations), how to move between places, and the kind of local tips you'd only get from someone who grew up there.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div><h3>You book, I stay on call</h3><p>You reserve everything yourself, directly with the provider, at the best available rate. I'm reachable by message before and during your trip if plans need to shift.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="routes" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Examples</span>
+      <h2>A few routes I've designed</h2>
+      <p>Every itinerary is built from scratch, but these give a sense of pace, structure, and the kind of trip I plan well.</p>
+    </div>
+    <div class="routes-grid">
+      <div class="route-item">
+        <span class="eyebrow">Provence &amp; Côte d'Azur</span>
+        <h3>Lavender roads and hilltop villages</h3>
+        <p>Hill towns, market mornings, and a slower coastline finish — built for travelers who want scenery without a packed schedule.</p>
+        <div class="route-meta"><span>8 days</span><span>2–4 travelers</span></div>
+      </div>
+      <div class="route-item">
+        <span class="eyebrow">Loire Valley &amp; Paris</span>
+        <h3>Châteaux, wine country, a city finale</h3>
+        <p>A relaxed countryside start with cycling and cellar visits, ending on a well-paced few days in Paris.</p>
+        <div class="route-meta"><span>6 days</span><span>Couples</span></div>
+      </div>
+      <div class="route-item">
+        <span class="eyebrow">Brittany &amp; Normandy</span>
+        <h3>Coastline, history, cider country</h3>
+        <p>A road-trip itinerary along the western coast, with time set aside for the D-Day beaches and Mont-Saint-Michel.</p>
+        <div class="route-meta"><span>10 days</span><span>Families</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-quote">"I don't sell packages. I plan the trip I'd want a good friend to take — then hand you the keys."</div>
+      <div class="about-body">
+        <p>I'm Lucas — French, originally, now based in Irvine, California. I split my time between engineering work and going home to France as often as I can, usually off the tourist track.</p>
+        <p>Lucas France Travel exists for people who want a trip that feels planned by someone who actually knows the country — not a template pulled from a travel blog, and not a packaged tour with someone else's pace and someone else's markup.</p>
+        <p>I plan. You book, you travel, you stay in control the entire way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple, transparent pricing</h2>
+    </div>
+    <div class="pricing-card">
+      <div>
+        <h3>Priced by the day of your itinerary</h3>
+        <p>One flat rate per day of planned travel — no percentage of your trip cost, no commissions from hotels or tour operators. You always know exactly what you're paying for.</p>
+      </div>
+      <div class="price-box">
+        <span class="price-tag">Founding client rate</span>
+        <div class="price-amount">$40–60 <span>/ day planned</span></div>
+        <p class="price-note">Limited to the first 10 clients. Standard rate applies after launch. A short discovery call comes first, always free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Tell me about the trip you have in mind</h2>
+      <p>Fill this out and I'll reply within a day or two to schedule a free discovery call.</p>
+    </div>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hidden-field"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+      <div class="row-2">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="dates">Approximate travel dates</label>
+        <input type="text" id="dates" name="dates" placeholder="e.g. June 2027, 10 days">
+      </div>
+      <div class="field">
+        <label for="message">What are you hoping for from this trip?</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="legal">Lucas France Travel is a travel planning and consulting service. We do not book, purchase, or manage any travel reservations on behalf of clients. All reservations are made directly by the client, in their own name, with the provider of their choice.</p>
+    <p>© <span id="year"></span> Lucas France Travel</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>
